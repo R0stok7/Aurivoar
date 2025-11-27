@@ -57,7 +57,9 @@ Parent=workspace,
 ReturnedObject:SetTag("Aurivoar") -- ReturnedObject when defined is the created instance
 ```
 
-# Extermal
+LIBRARY IS STILL UNDER DEVELOPMENT! MORE FEATURES SOON, SCRIPT IS OPEN SOURCE!
+
+# Alzair
 
 No protection against Remote DDos? Alzair is only specified on a basic RateLimit System for RemoteEvent by a simple script:
 
