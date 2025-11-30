@@ -1,11 +1,6 @@
 # Aurivoar
 Roblox Libraries builtin functions to ease scripting
 
-```lua
--- Not wanting to manually update your module script? Track by my creator ID!
-return require(128216321278204)
-```
-
 Aurivoar uses inspired Maid features but reworked
   - LinkToInstance
   - BindToDestroyal
