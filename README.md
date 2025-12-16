@@ -282,7 +282,7 @@ target : table
 ### RarityChild
 Get a random Content based of Chances
 ```lua
-Aurivoar.random.DictionaryChild(target : table)
+Aurivoar.random.RarityChild(target : table)
 ```
 **Parameters**
 ```lua
