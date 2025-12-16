@@ -59,7 +59,7 @@ function Aurivoar:CleanUp()
 			v:Destroy()
 		end
 	end
-	
+
 end
 
 
@@ -142,7 +142,7 @@ function Aurivoar:Insert(Content) -- Create Instance
 		["Material"] = function(Param)
 			if typeof(Param)=="string" then
 				return Enum.Material[Param]
-				
+
 			else
 				return Param
 			end
@@ -184,9 +184,78 @@ function Aurivoar:TimedTask(callback)
 		elseif typ=="RBXSriptConnection" then
 			call:Disconnect()
 		else
-			
+
 		end
 	end)
+end
+
+function Aurivoar:TableLength()
+	assert(typeof(self)=="table", "#1 Argument given is not a table")
+	local length = 0;
+	for i,v in pairs(self) do
+		length+=1
+	end
+	return length
+end
+
+function Aurivoar:getTableType()
+	assert(typeof(self)=="table", "#1 Argument given is not a table")
+	local count = 0
+	local maxIndex = 0
+	for key, _ in pairs(self) do
+		if type(key) == "number" and key > 0 and math.floor(key) == key then
+			if key > maxIndex then
+				maxIndex = key
+			end
+			count += 1
+		else
+			return "Dictionary"
+		end
+	end
+	if count == 0 then
+		return "Empty"
+	end
+	if maxIndex == count then
+		return "Array"
+	end
+	return "Dictionary"
+end
+
+local Libraries = {}
+
+Aurivoar.random = {
+	DictionaryChild = function(Table)
+		local keys = {}
+		for key in pairs(Table) do
+			table.insert(keys, key)
+		end
+		if #keys == 0 then
+			return nil
+		end
+		local randomKey = keys[math.random(1, #keys)]
+		return Table[randomKey], randomKey
+	end,
+	RarityChild = function(Table)
+		local MaximumRarity = 0
+		local SelectedRarity = nil
+		for i,v in pairs(Table) do
+			MaximumRarity += i
+		end
+		local Randomlib = Random.new()
+		local RandomNumber = Randomlib:NextNumber(0,MaximumRarity)
+		for i,v in pairs(table) do
+			if RandomNumber < i and SelectedRarity==nil then
+				return SelectedRarity
+			end
+		end
+		return nil
+	end,
+}
+
+function Aurivoar:include()
+	if Libraries[self] then
+		return Libraries[self]
+	end
 end
 
 -- Server
@@ -217,7 +286,21 @@ function Aurivoar:AddToData(p, val)
 		warn("Data has not been found!")
 	else
 		if typeof(Data) == "table" then
-			table.insert(Data, val)
+			if Aurivoar.getTableType(Data)=="Array" then
+				if typeof(val)=="table" then
+					for i,v in pairs(val) do
+						table.insert(Data, v)
+					end
+				else
+					table.insert(Data, val)
+				end
+			elseif Aurivoar.getTableType(Data)=="Dictionary" then
+				if typeof(val)=="table" then
+					for i,v in pairs(val) do
+						Data[i] = v
+					end
+				end
+			end
 			Aurivoar.SaveData(self,p,Data)
 		else
 			warn(`Data is not a Table to add {val}`)
