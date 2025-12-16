@@ -107,7 +107,7 @@ names : table = {include = {"Template"}, exlucde = {}}
 ### GetChildrenOfName / GetChildrenOfClass
 Returns an Array of Instances based of Name/Class
 ```lua
-Aurivoar.GetChildrenOfClass(target : instance, str : instanceName)}
+Aurivoar.GetChildrenOfName(target : instance, str : instanceName)}
 Aurivoar.GetChildrenOfClass(target : instance, str : className)}
 ```
 **Parameters**
@@ -188,12 +188,35 @@ Attributes = {CreatedBy  = "Rostok"} -- Attributes
 }
 ReturnedObject:SetTag("MadeByAurivoar") -- When object @defined then possible for further purposes 
 ```
+### TableLength
+```lua
+Aurivoar.TableLength(target : table)
+```
+**Parameters**
+```lua
+target : table
+```
+---
+### getTableType
+```lua
+Aurivoar.getTableType(target : table)
+```
+**Parameters**
+```lua
+target : table
+```
+**returns**
+```lua
+"Dictionary" or "Array" or "Empty" -- in case of no definition
+```
+---
+
 # DataStoreService
 
 ### GetData
 Get a Data secured by pcall from a specific Service
 ```lua
-Aurivoar.GetData(str : DataStoreKey, player : object, standard : value)
+local State, Data = Aurivoar.GetData(str : DataStoreKey, player : object, standard : value)
 ```
 **Parameters**
 > Your key for :GetDataStore(...)
@@ -211,7 +234,7 @@ standard : value
 ### SaveData
 Same as GetData but for saving
 ```lua
-Aurivoar.GetData(str : DataStoreKey, player : object, value : value)
+local State, Data = Aurivoar.SaveData(str : DataStoreKey, player : object, value : value)
 ```
 **Parameters**
 > Your key for :GetDataStore(...)
@@ -224,9 +247,9 @@ player : object
 ```lua
 value : value
 ```
-
+---
 ### AddData
-Add a value to a dictonary data type
+Add a value to a table data type
 > In combination of <ins>GetData</ins> and <ins>SaveData</ins>
 ```lua
 Aurivoar.AddToData(str : DataStoreKey, player : object, value : value)
@@ -244,6 +267,29 @@ value : value
 ```
 
 ---
+
+# random Library
+### DictionaryChild
+Get a random Content of a Dictionary
+```lua
+Aurivoar.random.DictionaryChild(target : table)
+```
+**Parameters**
+```lua
+target : table
+```
+---
+### RarityChild
+Get a random Content based of Chances
+```lua
+Aurivoar.random.DictionaryChild(target : table)
+```
+**Parameters**
+```lua
+target : table
+```
+---
+
 **LIBRARY IS STILL UNDER DEVELOPMENT! MORE FEATURES SOON, SCRIPT IS OPEN SOURCE!**
 
 
